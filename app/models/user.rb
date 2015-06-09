@@ -4,7 +4,9 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
-  has_many :events
+  has_many :owned_events, class_name: Event, foreign_key: :user_id
+  has_many :event_registrations
+  has_many :events, through: :event_registrations
 
   def full_name
     "#{self.first_name} #{self.last_name}"
