@@ -1,0 +1,39 @@
+<div class="col-md-6">
+<div class="row">
+<div class="col-md-2">
+  Topic:
+</div>
+<div class="col-md-10">
+  <%= @event.topic %>
+</div>
+</div>
+
+
+<div class="row">
+<div class="col-md-2">
+  Due at:
+</div>
+<div class="col-md-10">
+  <%= @event.due_at.strftime("%B %d, %Y %I:%M%p") %>
+</div>
+</div>
+
+<div class="row">
+<div class="col-md-2">
+  Agenda:
+</div>
+<div class="col-md-10">
+  <%= @event.agenda %>
+</div>
+</div>
+<%= link_to 'Back', events_path %>
+</div>
+
+<div class="col-md-6">
+  <% if @event.user == current_user %>
+    <%= link_to "Invite", "#", class: "btn btn-success" %>
+  <% else %>
+    <%= link_to "I want to join", "#", class: "btn btn-success" %>
+  <% end %>
+</div>
+

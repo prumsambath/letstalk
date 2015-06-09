@@ -13,7 +13,7 @@
         <% @events.each do |event| %>
           <tr>
             <td>
-              <%= link_to event.topic, "#" %>
+              <%= link_to event.topic, event %>
               <div class="organier">by <%= event.user.full_name %></div>
             </td>
 
