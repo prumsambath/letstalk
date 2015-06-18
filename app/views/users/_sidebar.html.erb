@@ -1,0 +1,14 @@
+<div class="list-group">
+  <a class="list-group-item <%= "active" if controller_name == "users" %>" href=<%= edit_user_path(current_user) %>>
+    <div class="pull-right">
+      <i class="fa fa-chevron-right"></i>
+    </div>
+    Profile
+  </a>
+  <a class="list-group-item <%= "active" if controller_name == "registrations" %>" href=<%= edit_user_registration_path %>>
+    <div class="pull-right">
+      <i class="fa fa-chevron-right"></i>
+    </div>
+    Password
+  </a>
+</div>

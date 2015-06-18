@@ -8,11 +8,11 @@
 </head>
 <body>
 
-<div class="container">
-  <%= render 'layouts/header' %>
-  <%= render 'layouts/notification' %>
-  <%= yield %>
-</div>
+<%= render "share/navbar" %>
+<% if user_signed_in? && !current_user.confirmed? %>
+  <%= render "share/user_confirm_required" %>
+<% end %>
+<%= yield %>
 
 </body>
 </html>

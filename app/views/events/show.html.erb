@@ -1,3 +1,31 @@
+<div class="main">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-9">
+        <div class="panel">
+          <div class="panel-heading">
+            <h1 class="panel-title"><%= @event.topic %></h1>
+          </div>
+          <div class="panel-body">
+            <div class="list-group list-group-campo">
+              <div class="list-group-item">
+                <%= link_to @event.owner.full_name, "#" %>
+              </div>
+              <div class="list-group-item-content">
+                <div class="list-group-item-heading">
+                  <b><%= link_to @event.owner.full_name %></b>
+                  .
+                  <%= time_ago_in_words(@event.created_at) %> ago
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="col-md-6">
 <div class="row">
 <div class="col-md-2">
@@ -30,10 +58,21 @@
 </div>
 
 <div class="col-md-6">
-  <% if @event.user == current_user %>
-    <%= link_to "Invite", "#", class: "btn btn-success" %>
+  <% if @event.owner == current_user %>
+    <%= form_for [@event, EventRegistration.new] do |f| %>
+      <%= f.text_field :user, placeholder: 'Email' %>
+      <%= f.submit "Invite" %>
+    <% end %>
   <% else %>
     <%= link_to "I want to join", "#", class: "btn btn-success" %>
   <% end %>
 </div>
+
+
+<ul>
+<%= @event.event_registrations.users do |user| %>
+  <li><%= user.full_name %></li>
+<% end %>
+</ul>
+
 

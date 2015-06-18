@@ -1,0 +1,22 @@
+<div id="user-confirm-required">
+  <div class="container">
+    <div class="alert alert-warning">
+      <p>
+        sdfdf<%= current_user.class.confirm_within %>
+        Please confirm your email. Confirm Email has been send to <%= current_user.email%>.
+      </p>
+      <p>
+        <%= link_to "Resend Email", user_confirmation_path, remote: true, method: :post, class: "btn btn-default btn-xs" %>
+      </p>
+    </div>
+    <div class="modal fade" id="user-confirm-required-modal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button class="close" data-dismiss="modal">&times;</button>
+            <div class="modal-title"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

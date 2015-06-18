@@ -1,38 +1,17 @@
-<div class="row">
-  <div class="col-md-5">
-    <%= form_for @event do |f| %>
-      <div class="form-group">
-        <%= f.label :topic %>
-        <%= f.text_field :topic, class: "form-control", rows: 10, cols: 20 %>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :agenda %>
-        <%= f.text_area :agenda, class: "form-control" %>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :due_at %>
-        <div class="form-group">
-            <div class='input-group date' id='datetimepicker1'>
-                <input type='text' class="form-control" />
-                <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-calendar"></span>
-                </span>
-            </div>
+<div class="main">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-9">
+        <div class="panel">
+          <div class="panel-heading">
+            <h3 class="panel-title">New Event</h3>
+          </div>
+          <div class="panel-body">
+            <%= render "form" %>
+          </div>
         </div>
       </div>
-
-      <div class="form-group">
-        <%= f.label :seat %>
-        <%= f.select :seat, ((1..5).map {|i| [i,i] } ) %>
-      </div>
-
-      <div class="form-group">
-        <%= f.submit "Create Event", class: "btn btn-success" %>
-      </div>
-    <% end %>
-
+    </div>
   </div>
 </div>
 

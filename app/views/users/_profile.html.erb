@@ -1,0 +1,35 @@
+<div class="panel">
+  <div class="panel-heading">
+    <h3 class="panel-title">Profile</h3>
+  </div>
+  <div class="panel-body">
+    <%= form_for(current_user,
+                 html: { method: :put, class: 'form-horizontal password-form' }) do |f| %>
+      <%= render "share/flash_messages", form: f %>
+      <%= render "share/form_error_messages", form: f %>
+      <div class="form-group">
+        <%= f.label :first_name, class: "control-label col-sm-3" %>
+        <div class="col-sm-6">
+          <%= f.text_field :first_name, tabIndex: 1, class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :last_name, class: "control-label col-sm-3" %>
+        <div class="col-sm-6">
+          <%= f.text_field :last_name, tabIndex: 2, class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :email, class: "control-label col-sm-3" %>
+        <div class="col-sm-6">
+          <%= f.email_field :email, tabIndex: 3, class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-6 col-sm-push-3">
+          <%= f.submit "Save changes", class: "btn btn-primary", tabIndex: 4 %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
