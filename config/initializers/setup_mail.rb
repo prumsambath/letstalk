@@ -1,4 +1,4 @@
-if Rails.env.development? || Rails.env.production?
+if Rails.env.production?
   ActionMailer::Base.delivery_method = :smtp
   ActionMailer::Base.default_url_options = { host: 'http://letstalk-buddy.com' }
   ActionMailer::Base.smtp_settings = {
