@@ -5,74 +5,36 @@
         <div class="panel">
           <div class="panel-heading">
             <h1 class="panel-title"><%= @event.topic %></h1>
+            <h1 class="panel-title">Start at: <%= @event.due_at.strftime("%B %d, %Y %I:%M%p") %></h1>
+            <% if @event.owner == current_user %>
+            <% else %>
+              <%= link_to "I want to join", "#", class: "btn btn-success" %>
+            <% end %>
           </div>
           <div class="panel-body">
             <div class="list-group list-group-campo">
-              <div class="list-group-item">
-                <%= link_to @event.owner.full_name, "#" %>
-              </div>
               <div class="list-group-item-content">
                 <div class="list-group-item-heading">
-                  <b><%= link_to @event.owner.full_name %></b>
-                  .
-                  <%= time_ago_in_words(@event.created_at) %> ago
+                  <div class="text-muted">
+                    <img class="img-circle img-avatar" src="<%= @event.owner.avatar.normal.url %>" alt="">
+                    <b><%= @event.owner.full_name %></b>
+                    .
+                    <%= time_ago_in_words(@event.created_at) %> ago
+                  </div>
                 </div>
+                <article>
+                  <%= @event.agenda %>
+                </article>
               </div>
             </div>
           </div>
+        </div>
+
+        <div>
+          <%= link_to 'Back', events_path, class: "btn btn-primary" %>
         </div>
       </div>
     </div>
   </div>
 </div>
-
-<div class="col-md-6">
-<div class="row">
-<div class="col-md-2">
-  Topic:
-</div>
-<div class="col-md-10">
-  <%= @event.topic %>
-</div>
-</div>
-
-
-<div class="row">
-<div class="col-md-2">
-  Due at:
-</div>
-<div class="col-md-10">
-  <%= @event.due_at.strftime("%B %d, %Y %I:%M%p") %>
-</div>
-</div>
-
-<div class="row">
-<div class="col-md-2">
-  Agenda:
-</div>
-<div class="col-md-10">
-  <%= @event.agenda %>
-</div>
-</div>
-<%= link_to 'Back', events_path %>
-</div>
-
-<div class="col-md-6">
-  <% if @event.owner == current_user %>
-    <%= form_for [@event, EventRegistration.new] do |f| %>
-      <%= f.text_field :user, placeholder: 'Email' %>
-      <%= f.submit "Invite" %>
-    <% end %>
-  <% else %>
-    <%= link_to "I want to join", "#", class: "btn btn-success" %>
-  <% end %>
-</div>
-
-
-<ul>
-<%= @event.event_registrations.users do |user| %>
-  <li><%= user.full_name %></li>
-<% end %>
-</ul>
-
 
