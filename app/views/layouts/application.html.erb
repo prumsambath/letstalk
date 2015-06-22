@@ -9,6 +9,7 @@
 <body>
 
 <%= render "share/navbar" %>
+<%= render "share/flash_messages" %>
 <% if user_signed_in? && !current_user.confirmed? %>
   <%= render "share/user_confirm_required" %>
 <% end %>

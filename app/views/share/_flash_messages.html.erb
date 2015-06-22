@@ -1,6 +1,12 @@
-<% [:success, :info, :warning, :danger].each do |type| %>
-  <% if flash[type.to_sym] %>
-    <div class="alert alert-<%= type %>">
+<% success_type = [:success, :info, :notice] %>
+<% warning_type = [:warning, :alert] %>
+<% danger_type = [:danger] %>
+<% (success_type + warning_type + danger_type).each do |type| %>
+  <% if flash[type] %>
+    <% msg_type = "success" if success_type.include?(type) %>
+    <% msg_type = "warning" if warning_type.include?(type) %>
+    <% msg_type = "danger" if danger_type.include?(type) %>
+    <div class="alert alert-<%= msg_type %> text-center">
       <a class="close" href="" data-dismiss="alert">| &times;</a>
       <%= flash[type] %>
     </div>
