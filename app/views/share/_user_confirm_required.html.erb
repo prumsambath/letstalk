@@ -6,7 +6,7 @@
         Please confirm your email. Confirm Email has been send to <%= current_user.email%>.
       </p>
       <p>
-        <%= link_to "Resend Email", user_confirmation_path, remote: true, method: :post, class: "btn btn-default btn-xs" %>
+        <%= link_to "Resend Email", user_confirmation_path(user: { email: current_user.email }), remote: true, method: :post, class: "btn btn-default btn-xs" %>
       </p>
     </div>
     <div class="modal fade" id="user-confirm-required-modal">
