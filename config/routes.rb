@@ -1,10 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  resources :users, only: [:edit, :update]
-
-  resources :events do
-    resources :event_registrations, except: [:edit, :update]
+  resources :users, only: [:edit, :update] do
+    resources :events
   end
 
   root to: "events#index"

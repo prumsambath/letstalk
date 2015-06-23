@@ -1,4 +1,4 @@
-<%= form_for @event do |f| %>
+<%= form_for [@owner, @event] do |f| %>
   <div class="row">
     <div class="col-md-9">
       <div class="form-group">
@@ -13,14 +13,7 @@
 
       <div class="form-group">
         <%= f.label :due_at %>
-        <div class="form-group">
-            <div class='input-group date' id='datetimepicker1'>
-                <input type='text' class="form-control" />
-                <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-calendar"></span>
-                </span>
-            </div>
-        </div>
+        <%= f.datetime_select :due_at %>
       </div>
 
       <div class="form-group">

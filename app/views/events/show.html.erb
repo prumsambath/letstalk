@@ -16,12 +16,13 @@
               <div class="list-group-item-content">
                 <div class="list-group-item-heading">
                   <div class="text-muted">
-                    <img class="img-circle img-avatar" src="<%= @event.owner.avatar.normal.url %>" alt="">
+                    <img class="img-circle img-avatar" src="<%= @event.owner.avatar.small.url %>" alt="">
                     <b><%= @event.owner.full_name %></b>
                     .
                     <%= time_ago_in_words(@event.created_at) %> ago
                   </div>
                 </div>
+                <hr>
                 <article>
                   <%= @event.agenda %>
                 </article>
@@ -31,7 +32,7 @@
         </div>
 
         <div>
-          <%= link_to 'Back', events_path, class: "btn btn-primary" %>
+          <%= link_to 'Back', user_events_path(current_user), class: "btn btn-primary" %>
         </div>
       </div>
     </div>

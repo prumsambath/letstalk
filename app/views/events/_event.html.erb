@@ -1,4 +1,4 @@
-<a class="list-group-item" href="<%= event_path(event) %>">
+<a class="list-group-item" href="<%= user_event_path(event.owner, event) %>">
   <div class="list-group-item-content">
     <div class="list-group-item-heading">
       <b><%= event.topic %>
