@@ -35,6 +35,38 @@
           <%= link_to 'Back', user_events_path(current_user), class: "btn btn-primary" %>
         </div>
       </div>
+      <div class="col-md-3">
+        <%= render "users/inviting_form" %>
+
+        <div class="panel">
+          <div class="panel-heading">
+            <h4 class="panel-title">Participants</h4>
+          </div>
+          <div class="panel-body">
+            <div class="list-group list-group-campo">
+              <% if @event.participants.any? %>
+                <% @event.participants.each do |participant| %>
+                  <div class="list-group-item">
+                    <a href="#">
+                      <img class="img-circle img-avatar" src="<%= participant.avatar.small.url %>" alt="">
+                      <%= participant.full_name %>
+                    </a>
+                    <%= link_to event_event_registration_path(@event, EventRegistration.get_id(@event, participant)),
+                      class: "btn btn-danger btn-xs pull-right", method: :delete,
+                      data: { confirm: "Are you sure to remove #{participant.full_name} from the invite list?" } do %>
+                        <span class="fa fa-remove"></span>
+                    <% end %>
+                  </div>
+                <% end %>
+              <% else %>
+                <div class="list-group-item text-center text-muted">
+                  No participants added
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

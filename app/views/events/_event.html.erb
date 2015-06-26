@@ -4,7 +4,10 @@
       <b><%= event.topic %>
     </div>
     <div class="text-muted">
-      <%= event.owner.full_name %>
+      <img class="img-circle img-avatar" src="<%= event.owner.avatar.small.url %>" alt="">
+      <b><%= event.owner.full_name %></b>
+      .
+      <%= time_ago_in_words(event.created_at) %> ago
     </div>
   </div>
 </a>

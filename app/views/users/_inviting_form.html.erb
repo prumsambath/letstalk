@@ -1,0 +1,17 @@
+<div class="panel">
+ <div class="panel-heading clearfix">
+    <h5 class="panel-title">Inviting</h5>
+  </div>
+  <div class="panel-body">
+    <%= form_tag [@event, EventRegistration.new], class: "search-form", method: :post, data: { behaviors: "turboform" } do %>
+      <div class="input-group">
+        <%= email_field_tag :email, params[:email], class: "form-control", tabIndex: 1, autocomplete: "off" %>
+        <div class="input-group-btn">
+          <button class="btn btn-default" type="submit" tabIndex="2">
+            <i class="fa fa-user-plus"></i>
+          </button>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

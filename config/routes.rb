@@ -5,5 +5,9 @@ Rails.application.routes.draw do
     resources :events
   end
 
+  resources :events do
+    resources :event_registrations, only: [:create, :destroy]
+  end
+
   root to: "events#index"
 end

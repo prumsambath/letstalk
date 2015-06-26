@@ -10,6 +10,7 @@
           <div class="list-group list-group-campo recordable">
             <% if @events.any? %>
               <%= render @events %>
+              <%= paginate @events %>
             <% end %>
           </div>
         </div>
