@@ -5,11 +5,15 @@
     <ul class="nav navbar-nav navbar-right">
       <% if user_signed_in? %>
         <li>
-          <a href="<%= user_events_path(current_user) %>"><i class="fa fa-calendar"></i> My Event</a>
+          <a href="<%= user_events_path(current_user) %>"><i class="fa fa-calendar fa-lg"></i> My Event</a>
         </li>
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-            <img class="img-circle img-avatar" src="<%= current_user.avatar.small.url %>" alt="">
+            <% if current_user.avatar? %>
+              <img class="img-circle img-avatar" src="<%= current_user.avatar.small.url %>" alt="">
+            <% else %>
+              <i class="fa fa-user fa-lg"></i>
+            <% end %>
             <%= current_user.full_name %>
             <i class="fa fa-caret-down"></i>
           </a>

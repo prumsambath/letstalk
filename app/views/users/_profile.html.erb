@@ -11,7 +11,11 @@
         <%= f.label :avatar, class: "control-label col-sm-3" %>
         <div class="col-sm-6 user-image-uploader">
           <div class="image">
-            <img class="img-rounded" alt="avatar" src="<%= current_user.avatar.profile.url if current_user.avatar? %>">
+            <% if current_user.avatar? %>
+              <img class="img-rounded" alt="avatar" src="<%= current_user.avatar.profile.url if current_user.avatar? %>">
+            <% else %>
+              <i class="fa fa-user fa-5x"></i>
+            <% end %>
           </div>
           <div class="uploader">
             <%= f.file_field :avatar, tabIndex: 1 %>
