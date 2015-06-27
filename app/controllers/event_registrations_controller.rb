@@ -8,6 +8,9 @@ class EventRegistrationsController < ApplicationController
     else
       event.participants << participant
       event.save
+
+      EventRegistrationMailer.confirmation(event, participant).deliver_now
+
       redirect_to [current_user, event], notice: "#{participant.full_name} is successfully invited."
     end
   end
