@@ -45,15 +45,15 @@
           <div class="panel-body">
             <div class="list-group list-group-campo">
               <% if @event.participants.any? %>
-                <% @event.participants.each do |participant| %>
+                <% @event.event_registrations.each do |registration| %>
                   <div class="list-group-item">
                     <a href="#">
-                      <img class="img-circle img-avatar" src="<%= participant.avatar.small.url %>" alt="">
-                      <%= participant.full_name %>
+                      <img class="img-circle img-avatar" src="<%= registration.participant.avatar.small.url %>" alt="">
+                      <%= registration.participant.full_name %>
                     </a>
-                    <%= link_to event_event_registration_path(@event, EventRegistration.get_id(@event, participant)),
+                    <%= link_to event_event_registration_path(@event, registration.id),
                       class: "btn btn-danger btn-xs pull-right", method: :delete,
-                      data: { confirm: "Are you sure to remove #{participant.full_name} from the invite list?" } do %>
+                      data: { confirm: "Are you sure to remove #{registration.participant.full_name} from the invite list?" } do %>
                         <span class="fa fa-remove"></span>
                     <% end %>
                   </div>
