@@ -5,4 +5,8 @@ class Event < ActiveRecord::Base
   has_many :participants, through: :event_registrations
 
   scope :all_active, -> { where("due_at > ?", Time.now) }
+
+  def room_full?
+    self.participants.count == self.seat
+  end
 end

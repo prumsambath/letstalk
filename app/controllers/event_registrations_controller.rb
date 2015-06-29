@@ -5,14 +5,20 @@ class EventRegistrationsController < ApplicationController
 
     if event.participants.include?(participant)
       redirect_to [current_user, event], alert: "#{participant.full_name} was already invited."
-    else
-      event.participants << participant
-      event.save
-
-      EventRegistrationMailer.confirmation(event, participant).deliver_now
-
-      redirect_to [current_user, event], notice: "#{participant.full_name} is successfully invited."
+      return
     end
+
+    if event.room_full?
+      redirect_to [current_user, event], alert: "The room is full. You cannot invite more."
+      return
+    end
+
+    event.participants << participant
+    event.save
+
+    EventRegistrationMailer.confirmation(event, participant).deliver_now
+
+    redirect_to [current_user, event], notice: "#{participant.full_name} is successfully invited."
   end
 
   def destroy
