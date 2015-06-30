@@ -17,7 +17,11 @@ class EventRegistrationsController < ApplicationController
     @event.participants << participant
     @event.save
 
-    EventRegistrationMailer.confirmation(@event, participant).deliver_now
+    if @event.owner == current_user
+      EventRegistrationMailer.invite_confirmation(@event, participant).deliver_now
+    else
+      EventRegistrationMailer.request_confirmation(@event, @event.owner).deliver_now
+    end
 
     redirect_to [current_user, @event], notice: "#{participant.full_name} is successfully invited."
   end
@@ -32,6 +36,6 @@ class EventRegistrationsController < ApplicationController
   private
 
   def owned_event
-    @event = current_user.owned_events.find(params[:event_id])
+    @event = Event.find(params[:event_id])
   end
 end

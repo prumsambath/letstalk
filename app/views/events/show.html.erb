@@ -6,9 +6,8 @@
           <div class="panel-heading">
             <h1 class="panel-title"><%= @event.topic %></h1>
             <h1 class="panel-title">Start at: <%= @event.due_at.strftime("%B %d, %Y %I:%M%p") %></h1>
-            <% if @event.owner == current_user %>
-            <% else %>
-              <%= link_to "I want to join", "#", class: "btn btn-success" %>
+            <% if @event.owner != current_user && @event.participants.count < @event.seat %>
+              <%= link_to "I want to join", event_event_registrations_path(@event, { email: current_user.email }), method: :post, class: "btn btn-success" %>
             <% end %>
           </div>
           <div class="panel-body">
@@ -35,10 +34,12 @@
           <%= link_to 'Back', user_events_path(current_user), class: "btn btn-primary" %>
         </div>
       </div>
-      <div class="col-md-3">
-        <%= render "users/inviting_form" %>
-        <%= render "users/participants" %>
-      </div>
+      <% if @event.owner == current_user %>
+        <div class="col-md-3">
+          <%= render "users/inviting_form" %>
+          <%= render "users/participants" %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
