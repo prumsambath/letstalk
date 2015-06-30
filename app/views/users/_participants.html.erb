@@ -7,7 +7,7 @@
       <% if @event.participants.any? %>
         <% @event.event_registrations.each do |registration| %>
           <div class="list-group-item">
-          <a href="#">
+          <a href="<%= user_events_path(registration.participant) %>">
             <img class="img-circle img-avatar" src="<%= registration.participant.avatar.small.url %>" alt="">
             <%= registration.participant.full_name %>
           </a>

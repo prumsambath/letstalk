@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
   def index
     if params[:user_id]
-      @events = current_user.owned_events.order('due_at DESC').page(params[:page]).per(15)
+      @events = User.find(params[:user_id]).owned_events.order('due_at DESC').page(params[:page]).per(15)
     else
       @events = Event.all_active.order('due_at DESC').page(params[:page]).per(15)
     end
