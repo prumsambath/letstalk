@@ -4,7 +4,11 @@
       <b><%= event.topic %>
     </div>
     <div class="text-muted">
-      <img class="img-circle img-avatar" src="<%= event.owner.avatar.small.url %>" alt="">
+      <% if event.owner.avatar? %>
+        <img class="img-circle img-avatar" src="<%= event.owner.avatar.small.url %>" alt="">
+      <% else %>
+        <i class="fa fa-user fa-lg"></i>
+      <% end %>
       <b><%= event.owner.full_name %></b>
       .
       <%= time_ago_in_words(event.created_at) %> ago

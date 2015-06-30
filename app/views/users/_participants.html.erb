@@ -6,14 +6,19 @@
     <div class="list-group list-group-campo">
       <% if @event.participants.any? %>
         <% @event.event_registrations.each do |registration| %>
+          <% participant = registration.participant %>
           <div class="list-group-item">
-          <a href="<%= user_events_path(registration.participant) %>">
-            <img class="img-circle img-avatar" src="<%= registration.participant.avatar.small.url %>" alt="">
-            <%= registration.participant.full_name %>
+          <a href="<%= user_events_path(participant) %>">
+            <% if participant.avatar? %>
+              <img class="img-circle img-avatar" src="<%= participant.avatar.small.url %>" alt="">
+            <% else %>
+              <i class="fa fa-user fa-lg"></i>
+            <% end %>
+            <%= participant.full_name %>
           </a>
           <%= link_to event_event_registration_path(@event, registration.id),
             class: "btn btn-danger btn-xs pull-right", method: :delete,
-            data: { confirm: "Are you sure to remove #{registration.participant.full_name} from the invite list?" } do %>
+            data: { confirm: "Are you sure to remove #{participant.full_name} from the invite list?" } do %>
             <span class="fa fa-remove"></span>
           <% end %>
           </div>
